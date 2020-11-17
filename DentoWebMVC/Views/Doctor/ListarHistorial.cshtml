@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "ListarHistorial";
+    Layout = "_LayoutDoctor";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css" />
+</head>
+
+<h1 class="text-primary text-center" style="margin-bottom:2%"><strong>Listado de Historiales</strong></h1>
+
+<table class="table" id="ListarHistorial">
+    <thead>
+        <tr class="text-center text-uppercase">
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Doctor</th>
+        
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in ViewBag.Historias)
+        {
+        <tr class="text-center text-uppercase">
+            <td>
+            @item.fecha.ToShortDateString()
+            </td>
+
+            @foreach (var x in ViewBag.Horarios)
+            {
+                @if (item.cita.idHorario == x.idHorario)
+                {
+                    <td>
+                        @x.horaInicio - @x.horaFin
+                    </td>
+
+                }
+            }
+            
+            <td>
+
+                @foreach (var x in ViewBag.Doctors)
+                {
+                    @if (item.cita.idDoctor == x.idDoctor)
+                    {
+                        <td>
+                            @x.nombres @x.apellidos
+                        </td>
+
+                    }
+                }
+             </td>
+             <td>
+                 <a href="/Doctor/DetalleCita?id=@item.idCita">Ver resultados</a>
+             </td>
+               
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+
+
+
+@section Scripts {
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#ListarHistorial').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+}
