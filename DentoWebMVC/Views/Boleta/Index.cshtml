@@ -1,0 +1,65 @@
+﻿
+@model DentoWebMVC.Models.DentoWeb.Historia
+
+@{ ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+
+<head>
+    <link rel="shortcut icon" href="~/images/icon.png" type="image/x-icon" />
+    <title>DentoWeb</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DentoWebMVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-6">
+                            <a class="navbar-brand" asp-area="" asp-controller="Cliente" asp-action="Index" style="padding:0.5%;margin-left:2%"><img src="~/images/icon.png" height="27" width="27" /></a>
+                            <a class="navbar-brand" asp-area="" asp-controller="Cliente" asp-action="Index" style="margin-right:2.5%;margin-left:-1%"><img src="~/images/iso.png" height="25" width="165" /></a>
+                            <br />
+                            <div style="padding-left:7%;padding-bottom:2%" class="text-secondary">
+                                <span>Clínica DentoWeb S.A.</span><br />
+                                <span>Dirección: Jr. Los Eucaliptos 259</span><br />
+                                <span>Teléfono: (+51)912123123</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="row">
+        <div class="container">
+            <h1 class="text-primary text-center control-label"><strong>Boleta de Atención</strong></h1>
+            <label>Paciente: </label>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container text-center">
+            &copy; 2020 - DentoWeb - Hecho con <i class="fas fa-heart"></i> pa' aprobar DIARS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Home</a>
+        </div>
+    </footer>
+
+</body>

@@ -39,6 +39,7 @@
                                             <th>Doctor</th>
                                             <th>Estado</th>
                                             <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
 
@@ -46,37 +47,46 @@
                                         @foreach (var item in ViewBag.Citas)
                                         {
 
-                        <tr style="text-align:center;">
-                            <td>@item.fecha.ToShortDateString()</td>
-                            <td>
-                                @item.horario.horaInicio - @item.horario.horaFin
-                            </td>
-                            <td>
-                                @item.doctor.nombres @item.doctor.apellidos
-                            </td>
-                            <td>
-                                @if (item.estado == "ATENDIDO")
-                                {
-                                    <strong style="color:cornflowerblue;">ATENDIDA</strong>
-                                }
-                                @if (item.estado == "CANCELADA")
-                                {
-                                    <strong style="color:red">CANCELADA</strong>}
+                                        <tr style="text-align:center;">
+                                            <td>@item.fecha.ToShortDateString()</td>
+                                            <td>
+                                                @item.horario.horaInicio - @item.horario.horaFin
+                                            </td>
+                                            <td>
+                                                @item.doctor.nombres @item.doctor.apellidos
+                                            </td>
+                                            <td>
+                                                @if (item.estado == "ATENDIDO")
+                                                {
+                                                 <strong style="color:cornflowerblue;">ATENDIDA</strong>}
+                                                @if (item.estado == "CANCELADA")
+                                                {
+                                                    <strong style="color:red">CANCELADA</strong>}
 
-                                @if (item.estado == "PENDIENTE" && item.fecha.AddDays(-1) >= DateTime.Now.AddDays(-1))
-                                {
-                                    <strong style="color:green">PENDIENTE</strong>}
-                            </td>
-                            <td>
-                                @if (item.estado == "ATENDIDO")
-                                {
-                                     <a href="/Cliente/DetalleCitaPaciente?id=@item.idCita" class="btn btn-info" style="margin-left:12%">Ver resultados</a>}
+                                                @if (item.estado == "PENDIENTE" && item.fecha.AddDays(-1) >= DateTime.Now.AddDays(-1))
+                                                {
+                                                    <strong style="color:green">PENDIENTE</strong>}
+                                            </td>
+                                            <td>
+                                                @if (item.estado == "ATENDIDO" && item.pago=="true")
+                                                {
+                                                    <a href="/Cliente/DetalleCitaPaciente?id=@item.idCita" class="btn btn-info" style="margin-left:12%">Ver resultados</a>}
 
-                                @if (item.estado == "PENDIENTE" && item.fecha.AddDays(-1) >= DateTime.Now.AddDays(-1))
-                                {
-                                    <a class="btn btn-danger" href="/Cliente/CancelarCita?id=@item.idCita" style="margin-left:11%">Cancelar cita</a>}
-                            </td>
-                        </tr>}
+                                                @if (item.estado == "PENDIENTE" && item.fecha.AddDays(-1) >= DateTime.Now.AddDays(-1))
+                                                {
+                                                    <a class="btn btn-danger" href="/Cliente/CancelarCita?id=@item.idCita" style="margin-left:11%">Cancelar cita</a>}
+                                            </td>
+                                            <td>
+                                                @if (item.estado == "ATENDIDO"&& item.pago=="false")
+                                                {
+                                                    <a href="/Cliente/RealizarPago?id=@item.idCita" class="btn btn-secondary" style="margin-left:12%">Realizar Pago</a>
+                                                }
+                                                else if(item.estado == "ATENDIDO" && item.pago=="true") { 
+                                                    <a href="/Boleta/Index?id=@item.idCita" class="btn btn-warning">Ver Boleta</a>
+                                                }
+
+                                            </td>
+                                        </tr>}
                                     </tbody>
 
                                 </table>}

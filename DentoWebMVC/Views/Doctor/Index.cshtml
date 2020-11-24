@@ -63,7 +63,11 @@
             <td>
                 @if (item.estado == "PENDIENTE")
                 {
-                        <a href="/Doctor/AtenderCita?id=@item.idCita" class="btn btn-success" style="margin-left:20px;">Atender</a>}
+                    <a href="/Doctor/AtenderCita?id=@item.idCita" class="btn btn-success" style="margin-left:20px;">Atender</a>
+                 }
+                @if(item.estado == "ATENDIDO" && item.pago=="true") {
+                     <a href="/Boleta/Index?id=@item.idCita" class="btn btn-warning">Ver Boleta</a>
+                }
             </td>
         </tr>
         }

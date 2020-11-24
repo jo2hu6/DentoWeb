@@ -16,6 +16,7 @@
             <th>Fecha</th>
             <th>Hora</th>
             <th>Doctor</th>
+            <th></th>
         
 
 
@@ -25,12 +26,13 @@
     <tbody>
         @foreach (var item in ViewBag.Historias)
         {
-        <tr class="text-center text-uppercase">
+        <tr class="text-center  ">
             <td>
-            @item.fecha.ToShortDateString()
+                @item.fecha.ToShortDateString()
             </td>
 
-            @foreach (var x in ViewBag.Horarios)
+            
+                @foreach (var x in ViewBag.Horarios)
             {
                 @if (item.cita.idHorario == x.idHorario)
                 {
@@ -40,8 +42,6 @@
 
                 }
             }
-            
-            <td>
 
                 @foreach (var x in ViewBag.Doctors)
                 {
@@ -53,9 +53,8 @@
 
                     }
                 }
-             </td>
              <td>
-                 <a href="/Doctor/DetalleCita?id=@item.idCita">Ver resultados</a>
+                 <a class="btn btn-primary" href="/Doctor/DetalleCita?id=@item.idCita">Ver resultados</a>
              </td>
                
             </tr>

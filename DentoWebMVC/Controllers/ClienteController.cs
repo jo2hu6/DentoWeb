@@ -96,6 +96,8 @@ namespace DentoWebMVC.Controllers
                 var user = cnx.Clientes.Where(o => o.usuario == claim.Value).First();
 
                 Cita cita = new Cita();
+                Random ramdom = new Random();
+                var a = ramdom.Next(50, 150);
 
                 cita.fecha = fecha;
 
@@ -107,7 +109,9 @@ namespace DentoWebMVC.Controllers
 
                 cita.idDoctor = Convert.ToInt32(iddoctor);
 
-                cita.monto = Convert.ToDecimal(0.0);
+                cita.monto = a;
+
+                cita.pago = "false";
 
                 cnx.Citas.Add(cita);
                 cnx.SaveChanges();
@@ -178,6 +182,28 @@ namespace DentoWebMVC.Controllers
             var hash = sha.ComputeHash(Encoding.Default.GetBytes(input));
 
             return Convert.ToBase64String(hash);
+        }
+
+        public ActionResult ClientePerfil()
+        {
+            var claim = HttpContext.User.Claims.FirstOrDefault();
+            var user = cnx.Clientes.Where(o => o.usuario == claim.Value).FirstOrDefault();
+            ViewBag.User = user;
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult RealizarPago(int id)
+        {
+            var claim = HttpContext.User.Claims.FirstOrDefault();
+            var user = cnx.Clientes.Where(o => o.usuario == claim.Value).FirstOrDefault();
+            var citita = cnx.Citas.Where(a => a.idCita == id).FirstOrDefault();
+            ViewBag.Paciente = user;
+            ViewBag.Cita = citita;
+            citita.pago = "true";
+            cnx.SaveChanges();
+            return RedirectToAction("Index");
         }
 
     }

@@ -11,6 +11,7 @@ namespace DentoWebMVC.Models.DentoWeb
         public DateTime fecha { get; set; }
         public int idHorario { get; set; }
         public string estado { get; set; }
+        public string pago { get; set; }
         public int idCliente { get; set; }
         public int idDoctor { get; set; }
         public decimal monto { get; set; }

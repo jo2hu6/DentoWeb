@@ -108,5 +108,15 @@ namespace DentoWebMVC.Controllers
             ViewBag.Doctors = cnx.Doctors.ToList();
             return View();
         }
+
+        public ActionResult DoctorPerfil()
+        {
+
+            var claim = HttpContext.User.Claims.FirstOrDefault();
+            var user = cnx.Doctors.Where(o => o.usuario == claim.Value).FirstOrDefault();
+            ViewBag.User = user;
+
+            return View();
+        }
     }
 }

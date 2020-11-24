@@ -60,7 +60,6 @@ namespace DentoWebMVC.Models.DentoWeb
         [StringLength(50, MinimumLength = 5, ErrorMessage = "La contraseña debe tener por lo menos 3 caracteres.")]
         [DisplayName("Contraseña")]
         public string passwd { get; set; }
-        public string numeroHistoria { get; set; }
 
         public List<Cita> Citas { get; set; }
     }

@@ -10,8 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DentoWebMVC.Controllers
 {
-
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
