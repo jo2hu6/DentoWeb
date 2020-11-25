@@ -14,7 +14,6 @@ namespace DentoWebMVC.Models.DentoWeb
         public DateTime fecha { get; set; }
         public string descripcion { get; set; }
         public string examenes { get; set; }
-
         public string diagnostico { get; set; }
         public string tratamiento { get; set; }
 

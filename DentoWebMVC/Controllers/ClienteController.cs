@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Rotativa.AspNetCore;
 
 namespace DentoWebMVC.Controllers
 {
@@ -204,6 +205,20 @@ namespace DentoWebMVC.Controllers
             citita.pago = "true";
             cnx.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Boleta(int id)
+        {
+            var historia = cnx.Historias.Include(o => o.cita).Where(o => o.idCita == id).FirstOrDefault();
+            var paciente = cnx.Clientes.Where(o => o.idCliente == historia.cita.idCliente).FirstOrDefault();
+            var doctor = cnx.Doctors.Where(o => o.idDoctor == historia.cita.idDoctor).FirstOrDefault();
+            var citita = cnx.Citas.Where(a => a.idCita == id).FirstOrDefault();
+            ViewBag.Doctor = doctor;
+            ViewBag.Historia = historia;
+            ViewBag.Paciente = paciente;
+            ViewBag.Cita = citita;
+
+            return View("IndexBoleta");
         }
 
     }

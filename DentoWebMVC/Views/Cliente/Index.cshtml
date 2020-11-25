@@ -28,7 +28,6 @@
 
 @if (TempData["CitasNull"] == null)
 {
-<a href="/Cliente/CreateCita"></a>
                 <h1 class="text-primary text-center" style="margin-bottom:2%"><strong>Citas de @ViewBag.User.nombres @ViewBag.User.apellidos</strong></h1>
                                 <table class="table table-hover" style="border-radius:15px;border:none" id="IndexCliente">
 
@@ -82,7 +81,7 @@
                                                     <a href="/Cliente/RealizarPago?id=@item.idCita" class="btn btn-secondary" style="margin-left:12%">Realizar Pago</a>
                                                 }
                                                 else if(item.estado == "ATENDIDO" && item.pago=="true") { 
-                                                    <a href="/Boleta/Index?id=@item.idCita" class="btn btn-warning">Ver Boleta</a>
+                                                    <a href="/Cliente/Boleta?id=@item.idCita" class="btn btn-warning">Ver Boleta</a>
                                                 }
 
                                             </td>
