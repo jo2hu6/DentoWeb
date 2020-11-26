@@ -10,6 +10,10 @@ namespace DentoWebMVC.Models.Context
 {
     public class DentoWebContext : DbContext
     {
+        public DentoWebContext()
+        {
+        }
+
         public DentoWebContext(DbContextOptions<DentoWebContext> options)
         : base(options)
         {

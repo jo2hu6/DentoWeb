@@ -1,7 +1,10 @@
-﻿using System;
+﻿using DentoWebMVC.Models.Context;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,13 +16,13 @@ namespace DentoWebMVC.Models.DentoWeb
         public string codigo { get; set; }
 
 
-        [Required(ErrorMessage = "El nombre es requerido...")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "El nombre debe tener minimo 3 caracteres")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "El nombre debe tener minimo 3 caracteres.")]
         [DisplayName("Nombre")]
         public string nombres { get; set; }
 
 
-        [Required(ErrorMessage = "El apellido es requerido...")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "El apellido debe tener por lo menos 3 caracteres.")]
         [DisplayName("Apellidos")]
         public string apellidos { get; set; }
@@ -31,15 +34,15 @@ namespace DentoWebMVC.Models.DentoWeb
         public string dni { get; set; }
 
 
-        [Required(ErrorMessage = "Fecha de Nacimiento requerida")]
-        [DataType(DataType.Date, ErrorMessage = ("Fecha de Nacimiento no valida"))]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [DataType(DataType.Date, ErrorMessage = ("Fecha de nacimiento no válida."))]
         [DisplayName("Fecha Nacimiento")]
         public DateTime fechaNac { get; set; }
 
 
 
-        [Required(ErrorMessage = "El correo es requerido...")]
-        [EmailAddress(ErrorMessage = "Email no valido")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [EmailAddress(ErrorMessage = "Email no válido.")]
         [DisplayName("Correo Electronico")]
         public string correo { get; set; }
 
@@ -50,17 +53,18 @@ namespace DentoWebMVC.Models.DentoWeb
         public string telefono { get; set; }
 
 
-        [Required(ErrorMessage = "El usuario es requerido...")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
         [StringLength(50, MinimumLength = 4, ErrorMessage = "El usuario debe tener por lo menos 4 caracteres.")]
         [DisplayName("Usuario")]
         public string usuario { get; set; }
 
 
-        [Required(ErrorMessage = "La contraseña es requerida...")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
         [StringLength(50, MinimumLength = 5, ErrorMessage = "La contraseña debe tener por lo menos 3 caracteres.")]
         [DisplayName("Contraseña")]
         public string passwd { get; set; }
 
         public List<Cita> Citas { get; set; }
     }
+
 }

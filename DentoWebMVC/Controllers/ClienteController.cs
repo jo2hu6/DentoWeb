@@ -148,9 +148,21 @@ namespace DentoWebMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-
                 return View();
-
+            }
+            var allUsers = cnx.Clientes.Where(a => a.usuario == cliente.usuario).FirstOrDefault();
+            if (allUsers!=null)
+            {
+                if (allUsers.usuario == cliente.usuario)
+                {
+                    ModelState.AddModelError("Error", "El usuario ya existe");
+                    return View();
+                }
+            }
+            if (cliente.dni.Length >8 || cliente.dni.Length <  8)
+            {
+                ModelState.AddModelError("dni", "Ingrese  8 caracteres");
+                return View();
             }
 
             cliente.codigo = "C - " + cliente.usuario;

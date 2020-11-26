@@ -36,20 +36,20 @@
 
                 </div>
                 <div class="form-row">
-
+                   
                     <div class="form-group col-md-6">
                         <label asp-for="dni" class="control-label"></label>
                         <input asp-for="dni" name="dni" type="text" class="form-control" />
-                        <span asp-validation-for="dni" class="text-danger"></span>
+                        <label style="color:red">@Html.ValidationMessage("dni")</label>
                     </div>
                     <div class="form-group col-md-6">
                         <label asp-for="fechaNac" class="control-label"></label>
-                        <input asp-for="fechaNac" name="fechaNac" type="date" class="form-control" />
+                        <input  asp-for="fechaNac" name="fechaNac" type="date" class="form-control" />
                         <span asp-validation-for="fechaNac" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <label asp-for="correo" class="control-label"></label>
-                        <input asp-for="correo" name="correo" type="email" class="form-control" />
+                        <input asp-for="correo" name="correo" type="email" required class="form-control" />
                         <span asp-validation-for="correo" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-6">
@@ -59,13 +59,14 @@
                     </div>
 
                 </div>
-
+                
                 <div class="form-row">
 
                     <div class="form-group col-md-6">
                         <label asp-for="usuario" class="control-label">Usuario</label>
                         <input asp-for="usuario" name="usuario" type="text" class="form-control" />
                         <span asp-validation-for="usuario" class="text-danger"></span>
+                        <label style="color:red">@Html.ValidationMessage("Error")</label>
                     </div>
                     <div class="form-group col-md-6">
                         <label asp-for="passwd" class="control-label">Contraseña</label>
