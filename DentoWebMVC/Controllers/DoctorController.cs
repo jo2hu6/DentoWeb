@@ -111,9 +111,10 @@ namespace DentoWebMVC.Controllers
 
         public ActionResult DoctorPerfil()
         {
-
             var claim = HttpContext.User.Claims.FirstOrDefault();
             var user = cnx.Doctors.Where(o => o.usuario == claim.Value).FirstOrDefault();
+            ViewBag.Id = user.idDoctor;
+           
             ViewBag.User = user;
 
             return View();
@@ -132,5 +133,45 @@ namespace DentoWebMVC.Controllers
 
             return View("IndexBoletaDoctor");
         }
+
+        [HttpGet]
+        public ActionResult EditarDoctor(int id)
+        {
+            ViewBag.Id = id;
+            var d = cnx.Doctors.Where(o => o.idDoctor == id).FirstOrDefault();
+
+            ViewBag.Nombres = d.nombres;
+            ViewBag.Apellidos = d.apellidos;
+            ViewBag.Codigo = d.codigoCol;
+            ViewBag.Casa = d.casaEstudio;
+            ViewBag.Titulo = d.titulo;
+            ViewBag.Dni = d.dni;
+            ViewBag.Correo = d.correo;
+            ViewBag.Telefono = d.telefono;
+
+            return View("EditarDoctor");
+        }
+
+        [HttpPost]
+        public ActionResult EditarDoctor(Doctor doctor)
+        {
+
+            var doc = cnx.Doctors.Where(o => o.idDoctor == doctor.idDoctor).FirstOrDefault();
+
+            doc.nombres = doctor.nombres;
+            doc.apellidos = doctor.apellidos;
+            doc.dni = doctor.codigoCol;
+            doc.casaEstudio = doctor.casaEstudio;
+            doc.titulo = doctor.titulo;
+            doc.dni = doctor.dni;
+            doc.correo = doctor.correo;
+            doc.telefono = doctor.telefono;
+            doc.idDoctor = doctor.idDoctor;
+
+            cnx.SaveChanges();
+
+            return RedirectToAction("DoctorPerfil");
+        }
+
     }
 }

@@ -190,7 +190,7 @@ namespace DentoWebMVC.Controllers
             var claim = HttpContext.User.Claims.FirstOrDefault();
             var user = cnx.Clientes.Where(o => o.usuario == claim.Value).FirstOrDefault();
             ViewBag.User = user;
-
+            ViewBag.Id = user.idCliente;
             return View();
         }
 
@@ -219,6 +219,41 @@ namespace DentoWebMVC.Controllers
             ViewBag.Cita = citita;
 
             return View("IndexBoleta");
+        }
+
+        [HttpGet]
+        public ActionResult EditarPaciente(int id)
+        {
+            ViewBag.Id = id;
+            var paciente = cnx.Clientes.Where(o => o.idCliente == id).FirstOrDefault();
+
+            ViewBag.Nombres = paciente.nombres;
+            ViewBag.Apellidos = paciente.apellidos;
+            ViewBag.Dni = paciente.dni;
+            ViewBag.FechaN = paciente.fechaNac;
+            ViewBag.Correo = paciente.correo;
+            ViewBag.Telefono = paciente.telefono;
+
+            return View("EditarPaciente");
+        }
+
+        [HttpPost]
+        public ActionResult EditarPaciente(Cliente cliente)
+        {
+
+            var clientito = cnx.Clientes.Where(o => o.idCliente == cliente.idCliente).FirstOrDefault();
+
+            clientito.nombres = cliente.nombres;
+            clientito.apellidos = cliente.apellidos;
+            clientito.dni = cliente.dni;
+            clientito.fechaNac = cliente.fechaNac;
+            clientito.correo = cliente.correo;
+            clientito.telefono = cliente.telefono;
+            clientito.idCliente = cliente.idCliente;
+
+            cnx.SaveChanges();
+
+            return RedirectToAction("ClientePerfil");
         }
 
     }

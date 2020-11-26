@@ -17,9 +17,11 @@
     <div class="row">
         <div class="container">
 
-            <form style="padding-left:30%;padding-right:30%">
-                <div class=" controls form-row">
-                    <h1 class="text-primary control-label text-center" style="font-family:'calibri';font-size:300%; padding-left:25%;margin-right:20%"><strong>Mi perfil</strong></h1>
+            <form style="padding-left:30%;padding-right:30%;padding-top:2%">
+                <div class=" controls form-row" style="font-family: trueno">
+                    <div style="background-color: #1f53c5;width:70%;margin-left:15%;margin-top:1%;margin-bottom:2%;border-radius:12px" class="text-center">
+                        <h1 class="control-label" style="font-family:'calibri';font-size:300%;color:white"><strong>Mi perfil</strong></h1>
+                    </div>
 
                     <label style="font-family:'calibri';font-size:150%; padding-left:3%"><strong>Nombre:</strong></label>
                     <div class=" col-md-12" style="text-align:center">
@@ -49,9 +51,12 @@
                     <div class=" col-md-12" style="text-align:center">
                         <label class="control-label" style="font-size:120%">@ViewBag.User.telefono</label>
                     </div>
-                    <div class="form-group" style="padding-left:39%; padding-top:5%">
+                    <div class="form-group text-center" style="padding-left:26%; padding-top:5%">
                         <a href="/Doctor/Index" class="btn btn-primary">
-                            <i class="far fa-save"></i> Aceptar
+                            <i class="fas fa-check"></i>  Aceptar
+                        </a>
+                        <a href="/Doctor/EditarDoctor?id=@ViewBag.Id" class="btn btn-secondary">
+                            <i class="fas fa-pen"></i>  Editar
                         </a>
                     </div>
                 </div>
@@ -59,18 +64,3 @@
         </div>
     </div>
 </body>
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-2">
-            aaaaa
-        </div>
-        <div class="col-md-2">
-            aaaaaa
-        </div>
-        <div class="col-md-8">
-            aaaa
-        </div>
-    </div>
-</div>

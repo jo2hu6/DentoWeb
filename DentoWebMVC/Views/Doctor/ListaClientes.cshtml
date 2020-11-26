@@ -6,9 +6,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css" />
 </head>
 
-<h1 class="text-primary text-center" style="margin-bottom:2%"><strong>Listado de Pacientes</strong></h1>
+<div class="text-center" style="background-color: #1f53c5;width:70%;border-radius:12px;box-shadow:10px;margin-left:15%;font-family:trueno">
+    <h1 style="margin-bottom:2%;color:white;padding:1%"><strong>Listado de Pacientes</strong></h1>
+</div>
 
-<table class="table table-hover" id="ClientesList">
+<table class="table table-hover" id="ClientesList" style="font-family: trueno">
     <thead>
         <tr class="text-center text-uppercase">
             <th>Código historia</th>
@@ -25,7 +27,7 @@
             <tr class="text-center">
                 <td>@item.codigo</td>
                 <td>@item.nombres @item.apellidos </td>
-                <td>@item.fechaNac</td>
+                <td>@item.fechaNac.ToString("dd-MM-yyyy")</td>
                 <td>@item.dni</td>
                 <td>
                     <a class="btn btn-primary" href="/Doctor/ListarHistorial?id=@item.idCliente">Ver historial</a>
