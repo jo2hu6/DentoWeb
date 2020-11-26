@@ -233,6 +233,7 @@ namespace DentoWebMVC.Controllers
             ViewBag.FechaN = paciente.fechaNac;
             ViewBag.Correo = paciente.correo;
             ViewBag.Telefono = paciente.telefono;
+            ViewBag.Pass = paciente.passwd;
 
             return View("EditarPaciente");
         }
@@ -249,6 +250,7 @@ namespace DentoWebMVC.Controllers
             clientito.fechaNac = cliente.fechaNac;
             clientito.correo = cliente.correo;
             clientito.telefono = cliente.telefono;
+            clientito.passwd = CreateHash(cliente.passwd);
             clientito.idCliente = cliente.idCliente;
 
             cnx.SaveChanges();

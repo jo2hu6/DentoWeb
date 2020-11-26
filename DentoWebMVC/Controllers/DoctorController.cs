@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using DentoWebMVC.Models.Context;
 using DentoWebMVC.Models.DentoWeb;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.Extensions.Configuration;
 
 namespace DentoWebMVC.Controllers
 {
     public class DoctorController : Controller
     {
         public DentoWebContext cnx;
-        public DoctorController(DentoWebContext cnx)
+        public readonly IConfiguration configuration;
+        public DoctorController(DentoWebContext cnx,IConfiguration configuration)
         {
+            this.configuration = configuration;
             this.cnx = cnx;
         }
 
@@ -134,6 +139,15 @@ namespace DentoWebMVC.Controllers
             return View("IndexBoletaDoctor");
         }
 
+        private string CreateHash(string input)
+        {
+            var sha = SHA256.Create();
+            input += configuration.GetValue<string>("Token");
+            var hash = sha.ComputeHash(Encoding.Default.GetBytes(input));
+
+            return Convert.ToBase64String(hash);
+        }
+
         [HttpGet]
         public ActionResult EditarDoctor(int id)
         {
@@ -148,6 +162,7 @@ namespace DentoWebMVC.Controllers
             ViewBag.Dni = d.dni;
             ViewBag.Correo = d.correo;
             ViewBag.Telefono = d.telefono;
+            ViewBag.Pass = d.passwd;
 
             return View("EditarDoctor");
         }
@@ -166,6 +181,7 @@ namespace DentoWebMVC.Controllers
             doc.dni = doctor.dni;
             doc.correo = doctor.correo;
             doc.telefono = doctor.telefono;
+            doc.passwd = CreateHash(doctor.passwd);
             doc.idDoctor = doctor.idDoctor;
 
             cnx.SaveChanges();
