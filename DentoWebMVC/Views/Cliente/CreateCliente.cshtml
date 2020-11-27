@@ -20,7 +20,9 @@
             <form asp-action="CreateCliente" method="post" class="form-register">
 
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <h1 class="text-center text-primary" style="margin-top:0.1%"><strong>Regístrate</strong></h1>
+                <div style="background-color: #1f53c5;width:70%;margin-left:15%;margin-top:1%;margin-bottom:2%;border-radius:12px" class="text-center">
+                    <h1 class="control-label" style="font-family:'calibri';font-size:300%;color:white;padding-bottom:3%"><strong>Regístrate</strong></h1>
+                </div>
                 <div class="form-row">
 
                     <div class="col-md-12">
@@ -31,7 +33,7 @@
                     <div class="form-group col-md-12">
                         <label asp-for="apellidos" class="control-label"></label>
                         <input asp-for="apellidos" name="apellidos" type="text" class="form-control" />
-                        <span asp-validation-for="nombres" class="text-danger"></span>
+                        <span asp-validation-for="apellidos" class="text-danger"></span>
                     </div>
 
                 </div>
