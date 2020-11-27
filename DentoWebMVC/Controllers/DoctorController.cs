@@ -23,7 +23,6 @@ namespace DentoWebMVC.Controllers
             this.cnx = cnx;
         }
 
-
         public IActionResult Index()
         {
             var claim = HttpContext.User.Claims.FirstOrDefault();
